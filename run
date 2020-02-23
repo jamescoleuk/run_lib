@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+#
+# This script contains functions designed to challenge the
+# regex run_lib.sh uses to gather functions
+
+test() {
+  echo "Test function"
+}
+
+# Should print out a blue result
+testFunction1() {
+  echo -e "${BLUE}testFunction1 -- should be blue${NC}"
+}
+
+# Plain result
+test_function2() {
+  echo "test_function2 -- should be plain"
+}
+
+# Red result
+test-function3() {
+  echo -e "${RED}test-function3 -- should be red${NC}"
+}
+
+# Calls others
+test-FUNCTION4() {
+  echo "test-FUNCTION4 -- should run 1 & 2"
+  testFunction1
+  test_function2
+}
+test_too_close() {
+  echo "Comment for this should be '}'"
+}
+
+source run_lib.sh "$@"
