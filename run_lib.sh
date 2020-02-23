@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 #
+# Version: v0.1.0
+# Author: James Cole
+# Email: james@binarism.net
+#
 # Have you ever used 'make' to execute commands? Lots of interfering people
 # don't think you should do that. Maybe they're right. BUT IT'S SO HANDY.
 # However, it would be better as bash scripts for reasons, if only they were
