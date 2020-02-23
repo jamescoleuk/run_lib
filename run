@@ -3,9 +3,5 @@
 # This script contains functions that help you work with this project.
 
 # TODO: put functions here. See TODO URL for details.
-# Thing
-butts() {
-   echo "hi"
-}
 
 source run_lib.sh "$@"
