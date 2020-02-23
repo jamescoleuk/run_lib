@@ -4,35 +4,8 @@
 # Author: James Cole
 # Email: james@binarism.net
 #
-# Have you ever used 'make' to execute commands? Lots of interfering people
-# don't think you should do that. Maybe they're right. BUT IT'S SO HANDY.
-# However, it would be better as bash scripts for reasons, if only they were
-# as easy to smash out as a Makefile. That's what this script is for.
-#
-# If you put this file into any project then you could create a 'run' file
-# next to it and at the very end add this line:
-#   source run_lib.sh "$@"
-# This will do a few things:
-#  1. When you execute you './run' script, which has some functions in it
-#     you'll get a list of those functions, along with any immediately
-#     preceding comments.
-#  2. You'll be able to do './run my_cool_function' to execute that function.
-#  3. You'll get nice colours in your functions, if you feel like using 'echo -e'.
-#
-# You must source this file because that introduces everything here as part of
-# the shell of your 'run' file. So in the line before where we get the name of
-# 'this_script', it will be your 'run' script, and not this 'run_lib.sh' file.
-# If this isn't clear then why not execute it './run_lib.sh "$@"' instead of
-# sourcing it. When you do a simple './run' you'll see the function names in
-# _this_ file, not your 'run' file.
-#
-# Why not have a better solution? Because this is light, not many lines, easy
-# to understand, and probably good enough. Will it fail if you do something
-# wierd? Maybe. PR me or mail me and we'll see what can be done.
-#
-# I'm far from an expert at Bash. If any of this can be done better then
-# please come forward and educate me. NB nerds: better != more succintly. I've
-# chosen some verbosity for the sake of comprehensibility.
+# Shows and exectues functions in the sourcing file.
+# See https://github.com/jamescoleuk/run_lib for more details.
 
 # Exit the script on any error
 set -e
