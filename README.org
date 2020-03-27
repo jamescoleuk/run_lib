@@ -1,4 +1,4 @@
-#+TITLE:  ~run_lib~, a command runner alternative to ~make~
+#+TITLE:  ~run_lib~, a command runner alternative to ~make~ abuse
 #+DATE:    February 23, 2020
 #+STARTUP: inlineimages nofold
 
@@ -18,8 +18,8 @@ Have you ever used ~make~ just as a command runner? In just the last year I've w
 
 What're the down-sides to using ~make~ in this way?
   - It's crap. Whoops, I mean it doesn't work if you indent with spaces instead of tabs.
-  - No built-in support for help, so you have to use boiler plate. And the default action for ~make~ is to compile code and if you override that and make the default a display of help suggestions then some grease-bag somewhere will smell what you've done, look up from their C and come zooming over on the Segway to scold you.
-  - It's designed for things that _make_ files, with dependencies, and not just for running random commands. This creates a cognitive barrier for those who just want to run stuff, and it irritates the hell out of those who do actually use make for building stuff. And the work-around, adding ~.PHONY:~ everywhere is straight-up embarassing.
+  - No built-in support for help, so you have to use boiler plate. And the default action for ~make~ is to compile code and if you override that and make the default a display of help suggestions then some grease-bag somewhere will smell what you've done, look up from their C and come zooming over on the Segway to scold you. But there are [[https://gist.github.com/prwhite/8168133][lots of options]].
+ - It's designed for things that _make_ files, with dependencies, and not just for running random commands. This creates a cognitive barrier for those who just want to run stuff, and it irritates the hell out of those who do actually use make for building stuff. And the work-around, adding ~.PHONY:~ everywhere is straight-up embarassing.
   - Every line in a target executes as a new shell. Good luck trying to anything complicated and multi-line, e.g. sourcing something useful.
 
 What about ~npm~ and adding to ~scripts~ in ~packages.json~? Only if you want data scientists and back-end developers to hate you.
@@ -29,9 +29,12 @@ Why not just use scripts?
   - The root dir of a project will contains lots of other files, and scripts get lost. Doing ~ls *.sh~ is simply not good enough. I suppose you could create a ~scripts~ dir, but we're just talking about, essentially, handy shortcuts here, not serious project code. So this is also also a bit heavy.
   - ~make~ will use ~sh~, unless you tell it not to with more boiler-plate.
 
+Why not use X?
+  -
 So why use this script?
   - Because it's simple, unambiguous, easy to read and use, and probably good enough. If any of this can be done better then please come forward and educate me. NB nerds: better != more succintly. I've chosen some verbosity for the sake of comprehensibility. - It's written in bash, which is ideal if you want to write bash to do stuff.
   - It does away with the problems of using Makefiles for this purpose, and replaces it with as yet unknown problems! If you see any PR me or mail me and we'll see what can be done.
+
 
 * Features
   - Provides an easy way create a project menu around whatever bash you already want to write.

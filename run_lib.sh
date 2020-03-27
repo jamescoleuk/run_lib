@@ -49,9 +49,11 @@ show_help() {
      previous_line=$(sed "${previous_line_number}q;d" ${this_script})
 
      # TODO Check that the previous line is in fact a comment
-    
-     echo -e "${BLUE}${function_name}${NC} \t\t\t ${DGREY}${previous_line}${NC}"
+    output="${output}\n${YELLOW}${function_name}${NC}+++${BLUE}${previous_line}${NC}" 
   done
+
+  echo -e "${LGREY}The following functions are available:${NC}"
+  echo -e ${output} | column -t -s+++
 }
 
 # If there aren't any arguments then display the help.
@@ -61,3 +63,4 @@ else
   # This will call the first argument as a function, passing in the subsequent arguments
   "$@"
 fi
+
