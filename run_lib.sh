@@ -32,24 +32,28 @@ show_help() {
   # That was easy, but we also want comments for each function.
   for i in "${functions[@]}"
   do
-     # Pull out the line number from the grep
-     IFS=: read line_number rest <<< $i
+    # Pull out the line number from the grep
+    IFS=: read line_number rest <<< $i
 
-     # Just keep the function name.
-     # TODO: use a capture group in the original grep. This would avoid the tr too.
-     function_name=$(sed 's/(){$//' <<< $rest)
+    # Just keep the function name.
+    # TODO: use a capture group in the original grep. This would avoid the tr too.
+    function_name=$(sed 's/(){$//' <<< $rest)
 
-     # This $((...)) bullshit is the "arithmetic expansion operator".
-     # Bash treats things as strings or numbers depending on context,
-     # so we need to use this operator to treat $line_number as a number.
-     previous_line_number=$(($line_number-1))
+    # Ignore any function that starts with _ 
+    if [[ $function_name != _* ]]; 
+    then 
+      # This $((...)) bullshit is the "arithmetic expansion operator".
+      # Bash treats things as strings or numbers depending on context,
+      # so we need to use this operator to treat $line_number as a number.
+      previous_line_number=$(($line_number-1))
 
-     # sed out the previous line, to use as a comment
-     # TODO: what about sedding out all previous commented lines?
-     previous_line=$(sed "${previous_line_number}q;d" ${this_script})
+      # sed out the previous line, to use as a comment
+      # TODO: what about sedding out all previous commented lines?
+      previous_line=$(sed "${previous_line_number}q;d" ${this_script})
 
-     # TODO Check that the previous line is in fact a comment
-    output="${output}\n${YELLOW}${function_name}${NC}+++${BLUE}${previous_line}${NC}" 
+      # TODO Check that the previous line is in fact a comment
+      output="${output}\n${YELLOW}${function_name}${NC}+++${BLUE}${previous_line}${NC}" 
+    fi
   done
 
   echo -e "${LGREY}The following functions are available:${NC}"
@@ -63,4 +67,3 @@ else
   # This will call the first argument as a function, passing in the subsequent arguments
   "$@"
 fi
-
